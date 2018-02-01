@@ -22,7 +22,18 @@ $opts = array(
   
 $context = stream_context_create($opts);
   
-  // Open the file using the HTTP headers set above
+// Open the file using the HTTP headers set above
 $json = file_get_contents("https://api.github.com/users/{$cmd[0]}/repos", false, $context);
 $obj = json_decode($json);
-echo $obj[0]->id,PHP_EOL;
+
+//sort the array function
+function cmp($a, $b)
+{
+    return strcmp($b->stargazers_count,$a->stargazers_count);
+}
+//call the sorting on the object
+usort($obj, "cmp");
+
+for ($x = 0; $x < count((array)$obj); $x++) {
+    echo "{$obj[$x]->name} \t {$obj[$x]->stargazers_count}",PHP_EOL;
+} 
