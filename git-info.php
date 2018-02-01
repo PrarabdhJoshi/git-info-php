@@ -31,12 +31,14 @@ $obj = json_decode($json);
 //sort the array function
 function cmp($a, $b)
 {
-    return strcmp($a->stargazers_count,$b->stargazers_count);
+    if($a->stargazers_count == $b->stargazers_count){ return 0 ; }
+	return ($a->stargazers_count < $b->stargazers_count) ? -1 : 1;
 }
 //reverse sort the array
 function rcmp($a, $b)
 {
-    return strcmp($b->stargazers_count,$a->stargazers_count);
+    if($a->stargazers_count == $b->stargazers_count){ return 0 ; }
+	return ($a->stargazers_count > $b->stargazers_count) ? -1 : 1;
 }
 //call the sorting on the object
 ($cmd[1]=="dsc")?usort($obj, "rcmp"):usort($obj,"cmp");
