@@ -41,7 +41,17 @@ function rcmp($a, $b)
 //call the sorting on the object
 ($cmd[1]=="dsc")?usort($obj, "rcmp"):usort($obj,"cmp");
 
+//print the data as a tabel
+//set table mask
+$mask = "\t %-45.30s|\t %15s \n";
+//append a newline
+printf("\n");
+printf($mask, 'Repository', 'StarGazers Count');
+printf("\n");
 
 for ($x = 0; $x < count((array)$obj); $x++) {
-    echo "{$obj[$x]->name} \t {$obj[$x]->stargazers_count}",PHP_EOL;
+    printf($mask, $obj[$x]->name, $obj[$x]->stargazers_count);
+
+    //echo "{$obj[$x]->name} \t {$obj[$x]->stargazers_count}",PHP_EOL;
 } 
+
