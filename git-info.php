@@ -10,10 +10,10 @@ $cmd->option()
 
 
 //get the argument for ascending or descending values
-$cmd->option('o')
-->aka('order')
-->describedAs('type asc to display a sorted result or dsc to display a reversed sorted result based on Stargazers_count');
-
+$cmd->option('d')
+->aka('dsc')
+->describedAs("[Default] Ascending Order Display \nType --dsc or -d to display a reverse sorted result based on Stargazers_count")
+->boolean();
 
 $opts = array(
     'http'=>array(
@@ -41,7 +41,7 @@ function rcmp($a, $b)
 	return ($a->stargazers_count > $b->stargazers_count) ? -1 : 1;
 }
 //call the sorting on the object
-($cmd[1]=="dsc")?usort($obj, "rcmp"):usort($obj,"cmp");
+($cmd['dsc'])?usort($obj, "rcmp"):usort($obj,"cmp");
 
 //print the data as a tabel
 //set table mask
