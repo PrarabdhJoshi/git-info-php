@@ -10,7 +10,7 @@ The app requires that you are running PHP 5.3 or higher with Composer.
 ### 
     Download and build Composer
     Make it globally accessible
-    cd to your the directory where you have extracted your script files and run composer install
+    cd to your directory where you have extracted the files and run composer install
     
 ## Usage
     php git-info.php <optional argument> [user]
